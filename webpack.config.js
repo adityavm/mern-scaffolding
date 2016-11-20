@@ -10,6 +10,12 @@ const
 var cfg = {
   devServer: {
     inline: true,
+    proxy: {
+      "*": {
+        target: "http://localhost:3000/",
+        secure: false,
+      },
+    },
   },
   entry: srcDir + "/index.js",
   output: {
