@@ -2,7 +2,7 @@
   "name": "mongodb-express-react-node-app",
   "version": "0.1.0",
   "description": "mongodb express react node full stack app",
-  "repository": "https://gitlab.com/adityavm/ern-stack",
+  "repository": "https://github.com/adityavm/mern-scaffolding",
   "main": "app.js",
   "dependencies": {
     "babel-core": "^6.18.2",
