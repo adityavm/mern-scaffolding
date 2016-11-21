@@ -3,12 +3,9 @@
 ## usage
 
 ```zsh
-npm start             # start server
+npm start             # start dev environment (app, webpack dev, db)
 npm run-script build  # build app
-npm run-script dev    # run app in dev mode
+npm run-script app    # serve app
+npm run-script dev    # start webpack dev
 npm run-script db     # start db
 ```
-
-## todo
-
-put everything in forever to not clog up terminal tabs
