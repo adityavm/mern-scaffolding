@@ -10,12 +10,14 @@
 
  function Eg() {
   var
-  url = cfg.mongoUrl,
-  _this = this;
+    url = cfg.mongoUrl,
+    _this = this;
 
   this._db = q.defer();
+  this.collection = "shortform";
 
   mongodb.connect(url, function(err, db) {
+    if (err) _this._db.reject(err);
     _this._db.resolve(db);
   });
  };
@@ -24,35 +26,37 @@
   return this._db.promise;
  };
 
- Egs.prototype.close = function() {
+ Eg.prototype.close = function() {
   this.db().then(function(db){
     db.close();
   });
  };
 
- Egs.prototype.run = function(params) {
+ Eg.prototype.run = function(params) {
   var
   _this = this,
   done = q.defer();
 
   this.db().then(function(db) {
-    var collection = db.collection("shortform");
+    var collection = db.collection(_this.collection);
 
     if (Object.keys(params).length) console.log("restricting by", params);
 
     collection.find(params || {}).toArray(function(err, docs) {
       done.resolve(docs);
-      // _this.close();
     });
+  },
+  err => {
+    done.reject(err);
   });
 
   return done.promise;
  };
 
- Egs.prototype.respondTo = function(res, params) {
+ Eg.prototype.respondTo = function(res, params) {
   this.run(params).then(function(response) {
     res.send(response);
   });
  };
 
- module.exports = new Egs();
+ module.exports = new Eg();

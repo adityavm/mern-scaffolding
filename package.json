@@ -15,6 +15,7 @@
     "file-loader": "^0.9.0",
     "forever": "^0.15.3",
     "helmet": "^3.1.0",
+    "mocha": "^3.2.0",
     "mongodb": "^2.2.11",
     "node-sass": "^3.13.0",
     "q": "^1.4.1",
@@ -28,11 +29,11 @@
   },
   "devDependencies": {},
   "scripts": {
+    "test": "./node_modules/.bin/mocha",
     "build": "./node_modules/.bin/webpack",
     "app": "./node_modules/.bin/forever start app.js",
     "dev": "./node_modules/.bin/forever start ./node_modules/.bin/webpack-dev-server --content-base dist/",
     "db": "mongod --config mongod.conf --fork --logpath logs/mongo.log",
-
     "start": "npm run-script app; npm run-script dev; npm run-script db;",
     "end": "./node_modules/.bin/forever stopall; printf '\n\\e[41mNOTE\\e[49m\\e[31m Manually kill MongoDB server\\e[90m (ps aux | grep mongod)\n'"
   },
